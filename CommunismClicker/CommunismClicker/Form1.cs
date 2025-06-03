@@ -8,6 +8,8 @@ namespace CommunismClicker
         int clicker = 0;
         int level = 0;
         int upgrade = 0;
+        double multiplikator = 0;
+        bool finish = false;
 
         public Form1()
         {
@@ -21,6 +23,7 @@ namespace CommunismClicker
             this.Paint += new PaintEventHandler(Form1_Paint);
 
             this.Text = "Communism Clicker";
+            //Größe fest und relativ zum Bildschirm
             this.ClientSize = new Size(800, 600);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
