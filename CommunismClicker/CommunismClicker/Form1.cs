@@ -5,7 +5,7 @@ namespace CommunismClicker
     public partial class Form1 : Form
     {
         Image marxImage;
-        int clicker = 0;
+        int waehrung = 0;
         int level = 0;
         int upgrade = 0;
         double multiplikator = 0;
