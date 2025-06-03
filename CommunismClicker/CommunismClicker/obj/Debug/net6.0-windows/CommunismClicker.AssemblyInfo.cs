@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CommunismClicker")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b39bce0b32568aa5914e50969b02fde7e0b5b0d9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ab9063a9922be065ea05fd368f1216224d5f9af")]
 [assembly: System.Reflection.AssemblyProductAttribute("CommunismClicker")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CommunismClicker")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
