@@ -8,18 +8,20 @@ namespace CommunismClicker
     public partial class Form1 : Form
     {
         Image marxImage;
-        private RectangleF marxBereich;
 
+        private Button saveButton;
+
+        private RectangleF marxBereich;
         private Rectangle bereichUpgradeButton;
         private int upgradeKosten = 20;
         private float upgradeFaktor = 1.5f;
         private float fortschrittProzent = 0f;
 
-        int waehrung = 0;
-        int level = 0;
-        int upgrade = 0;
-        double multiplikator = 1;
-        bool finish = false;
+        int waehrung = Spielstand.Instance.Waehrung;
+        int level = Spielstand.Instance.Level;
+        bool[] upgrade = Spielstand.Instance.Upgrades;
+        double multiplikator = Spielstand.Instance.Multiplikator;
+        bool durchgespielt = Spielstand.Instance.Durchgespielt;
 
         private Label waehrungLabel;
 
@@ -30,6 +32,23 @@ namespace CommunismClicker
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            Spielstand.Instance.Laden();
+            waehrung = Spielstand.Instance.Waehrung;
+            level = Spielstand.Instance.Level;
+            multiplikator = Spielstand.Instance.Multiplikator;
+            durchgespielt = Spielstand.Instance.Durchgespielt;
+            upgrade = Spielstand.Instance.Upgrades;
+
+            this.saveButton = new Button();
+            this.saveButton.Text = "Spielstand speichern";
+            this.saveButton.Font = new Font("Arial", 10, FontStyle.Regular);
+            this.saveButton.Size = new Size(180, 40);
+            this.saveButton.Location = new Point(20, 60);
+            this.saveButton.Click += SaveButton_Click;
+            this.Controls.Add(saveButton);
+
+
             this.DoubleBuffered = true;
 
             this.Paint += new PaintEventHandler(Form1_Paint);
@@ -52,6 +71,21 @@ namespace CommunismClicker
             this.Resize += (s, ev) => this.Invalidate();
 
         }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            Spielstand.Instance.Waehrung = waehrung;
+            Spielstand.Instance.Level = level;
+            Spielstand.Instance.Multiplikator = multiplikator;
+            Spielstand.Instance.Durchgespielt = durchgespielt;
+            Spielstand.Instance.Upgrades = upgrade;
+            Spielstand.Instance.Index = 0;
+
+            Spielstand.Instance.Speichern();
+
+            MessageBox.Show("Spielstand gespeichert1!");
+        }
+
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
