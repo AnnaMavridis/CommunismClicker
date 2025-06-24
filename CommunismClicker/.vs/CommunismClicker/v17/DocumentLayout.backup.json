@@ -56,7 +56,7 @@
               "RelativeDocumentMoniker": "CommunismClicker\\Spielstand.cs",
               "ToolTip": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Spielstand.cs",
               "RelativeToolTip": "CommunismClicker\\Spielstand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAgwEYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-17T08:13:44.731Z",
               "EditorCaption": ""
@@ -69,7 +69,7 @@
               "RelativeDocumentMoniker": "CommunismClicker\\Startfenster.cs",
               "ToolTip": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Startfenster.cs",
               "RelativeToolTip": "CommunismClicker\\Startfenster.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAgwBUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-17T07:54:29.958Z",
               "EditorCaption": ""
@@ -83,7 +83,8 @@
               "ToolTip": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Startfenster.cs [Entwurf]",
               "RelativeToolTip": "CommunismClicker\\Startfenster.cs [Entwurf]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T07:54:25.719Z"
+              "WhenOpened": "2025-06-17T07:54:25.719Z",
+              "EditorCaption": " [Entwurf]"
             },
             {
               "$type": "Document",
@@ -95,7 +96,8 @@
               "RelativeToolTip": "CommunismClicker\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T09:47:15.998Z"
+              "WhenOpened": "2025-06-16T09:47:15.998Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -105,9 +107,10 @@
               "RelativeDocumentMoniker": "CommunismClicker\\Form1.cs",
               "ToolTip": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Form1.cs",
               "RelativeToolTip": "CommunismClicker\\Form1.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAzwAQAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAADwAAAAAAAAAAAAYwAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T09:46:26.031Z"
+              "WhenOpened": "2025-06-16T09:46:26.031Z",
+              "EditorCaption": ""
             }
           ]
         }
