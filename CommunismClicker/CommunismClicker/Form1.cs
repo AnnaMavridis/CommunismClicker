@@ -17,11 +17,11 @@ namespace CommunismClicker
         private float upgradeFaktor = 1.5f;
         private float fortschrittProzent = 0f;
 
-        int waehrung = Spielstand.Instance.Waehrung;
-        int level = Spielstand.Instance.Level;
-        bool[] upgrade = Spielstand.Instance.Upgrades;
-        double multiplikator = Spielstand.Instance.Multiplikator;
-        bool durchgespielt = Spielstand.Instance.Durchgespielt;
+        public double Waehrung = Spielstand.Instance.Waehrung;
+        public int Level = Spielstand.Instance.Level;
+        public bool[] Upgrade = Spielstand.Instance.Upgrades;
+        public double Multiplikator = Spielstand.Instance.Multiplikator;
+        public bool Durchgespielt = Spielstand.Instance.Durchgespielt;
 
         private Label waehrungLabel;
 
@@ -34,11 +34,11 @@ namespace CommunismClicker
         {
 
             Spielstand.Instance.Laden();
-            waehrung = Spielstand.Instance.Waehrung;
-            level = Spielstand.Instance.Level;
-            multiplikator = Spielstand.Instance.Multiplikator;
-            durchgespielt = Spielstand.Instance.Durchgespielt;
-            upgrade = Spielstand.Instance.Upgrades;
+            Waehrung = Spielstand.Instance.Waehrung;
+            Level = Spielstand.Instance.Level;
+            Multiplikator = Spielstand.Instance.Multiplikator;
+            Durchgespielt = Spielstand.Instance.Durchgespielt;
+            Upgrade = Spielstand.Instance.Upgrades;
 
             this.saveButton = new Button();
             this.saveButton.Text = "Spielstand speichern";
@@ -65,7 +65,7 @@ namespace CommunismClicker
             this.waehrungLabel.AutoSize = true;
             this.waehrungLabel.Font = new Font("Arial", 16, FontStyle.Bold);
             this.waehrungLabel.Location = new Point(20, 20);
-            this.waehrungLabel.Text = $"Währung: {waehrung} ☭";
+            this.waehrungLabel.Text = $"Währung: {Waehrung} ☭";
 
             this.Controls.Add(this.waehrungLabel);
             this.Resize += (s, ev) => this.Invalidate();
@@ -74,16 +74,15 @@ namespace CommunismClicker
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            Spielstand.Instance.Waehrung = waehrung;
-            Spielstand.Instance.Level = level;
-            Spielstand.Instance.Multiplikator = multiplikator;
-            Spielstand.Instance.Durchgespielt = durchgespielt;
-            Spielstand.Instance.Upgrades = upgrade;
-            Spielstand.Instance.Index = 0;
+            Spielstand.Instance.Waehrung = Convert.ToInt32(Waehrung);
+            Spielstand.Instance.Level = Level;
+            Spielstand.Instance.Multiplikator = Multiplikator;
+            Spielstand.Instance.Durchgespielt = Durchgespielt;
+            Spielstand.Instance.Upgrades = Upgrade;
 
             Spielstand.Instance.Speichern();
 
-            MessageBox.Show("Spielstand gespeichert1!");
+            MessageBox.Show("Spielstand gespeichert!");
         }
 
 
@@ -137,7 +136,7 @@ namespace CommunismClicker
                 buttonX + (buttonBreite - textSize.Width) / 2,
                 buttonY + (buttonHoehe - textSize.Height) / 2 - 10);
 
-            fortschrittProzent = Math.Min(1f, (float)waehrung / upgradeKosten);
+            fortschrittProzent = Math.Min(1f, (float)Waehrung / upgradeKosten);
 
             int balkenBreite = (int)(buttonBreite * fortschrittProzent);
             int balkenHoehe = 16;
@@ -154,15 +153,15 @@ namespace CommunismClicker
         {
             if (marxBereich.Contains(e.Location))
             {
-                waehrung += Convert.ToInt32(multiplikator);
-                waehrungLabel.Text = $"Währung: {waehrung} ☭";
+                Waehrung += Convert.ToInt32(Multiplikator);
+                waehrungLabel.Text = $"Währung: {Waehrung} ☭";
                 Invalidate();
             }
             else if (bereichUpgradeButton.Contains(e.Location))
             {
-                //Öffnen Upgrade Fenster
-            }
-
+                ShopFenster shop = new ShopFenster();
+                shop.ShowDialog();
+            } 
         }
 
         private void timer1_Tick(object sender, EventArgs e)
