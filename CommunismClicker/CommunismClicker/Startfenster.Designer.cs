@@ -32,13 +32,15 @@
             weiterSpielen = new Button();
             spielVerlassen = new Button();
             comboBoxSpielstände = new ComboBox();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // spielStarten
             // 
-            spielStarten.Location = new Point(140, 69);
+            spielStarten.Location = new Point(48, 69);
             spielStarten.Name = "spielStarten";
-            spielStarten.Size = new Size(144, 62);
+            spielStarten.Size = new Size(153, 62);
             spielStarten.TabIndex = 0;
             spielStarten.Text = "Neuen Spielstand erstellen";
             spielStarten.UseVisualStyleBackColor = true;
@@ -46,7 +48,7 @@
             // 
             // weiterSpielen
             // 
-            weiterSpielen.Location = new Point(320, 69);
+            weiterSpielen.Location = new Point(48, 189);
             weiterSpielen.Name = "weiterSpielen";
             weiterSpielen.Size = new Size(153, 62);
             weiterSpielen.TabIndex = 1;
@@ -56,9 +58,9 @@
             // 
             // spielVerlassen
             // 
-            spielVerlassen.Location = new Point(509, 69);
+            spielVerlassen.Location = new Point(602, 332);
             spielVerlassen.Name = "spielVerlassen";
-            spielVerlassen.Size = new Size(135, 62);
+            spielVerlassen.Size = new Size(155, 78);
             spielVerlassen.TabIndex = 2;
             spielVerlassen.Text = "Spiel Verlassen";
             spielVerlassen.UseVisualStyleBackColor = true;
@@ -68,11 +70,20 @@
             // 
             comboBoxSpielstände.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxSpielstände.FormattingEnabled = true;
-            comboBoxSpielstände.Location = new Point(297, 254);
+            comboBoxSpielstände.Location = new Point(48, 316);
             comboBoxSpielstände.Name = "comboBoxSpielstände";
-            comboBoxSpielstände.Size = new Size(151, 28);
+            comboBoxSpielstände.Size = new Size(153, 28);
             comboBoxSpielstände.TabIndex = 3;
             comboBoxSpielstände.SelectedIndexChanged += comboBoxSpielstände_SelectedIndexChanged;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(0, 2);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(798, 447);
+            pictureBox1.TabIndex = 4;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // Startfenster
             // 
@@ -83,9 +94,11 @@
             Controls.Add(spielVerlassen);
             Controls.Add(weiterSpielen);
             Controls.Add(spielStarten);
+            Controls.Add(pictureBox1);
             Name = "Startfenster";
             Text = "Startfenster";
             Load += Startfenster_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -95,5 +108,6 @@
         private Button weiterSpielen;
         private Button spielVerlassen;
         private ComboBox comboBoxSpielstände;
+        private PictureBox pictureBox1;
     }
 }

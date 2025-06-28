@@ -12,7 +12,7 @@ namespace CommunismClicker
 {
     public partial class Startfenster : Form
     {
-        
+
         private readonly string speicherOrdner = "spielstaende";
         public Startfenster()
         {
@@ -51,7 +51,9 @@ namespace CommunismClicker
         }
         private void Startfenster_Load(object sender, EventArgs e)
         {
-
+            string pfad = Path.Combine(Application.StartupPath, "Resources", "Flag_ANTIFA.png");
+            pictureBox1.Image = Image.FromFile(pfad);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void spielStarten_Click(object sender, EventArgs e)
@@ -67,7 +69,7 @@ namespace CommunismClicker
             Spielstand.Instance.Level = 1;
             Spielstand.Instance.Multiplikator = 1.0;
             Spielstand.Instance.Upgrades = new bool[7];
-            
+
             Spielstand.Instance.Speichern(HolePfad(name));
 
             LadeSpielstandListe();
@@ -109,6 +111,11 @@ namespace CommunismClicker
         }
 
         private void comboBoxSpielstände_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
