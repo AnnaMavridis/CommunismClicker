@@ -29,16 +29,17 @@ namespace CommunismClicker
 
         private static readonly string SpeicherPfad = "spielstand.txt";
 
-        public void Speichern()
+        public void Speichern(string pfad)
         {
             try
             {
-                using (StreamWriter writer = new StreamWriter(SpeicherPfad))
+                using (StreamWriter writer = new StreamWriter(pfad))
                 {
                     string upgradesString = string.Join("&&", Array.ConvertAll(Upgrades, u => u.ToString()));
                     string zeile = $"{Index}&&{Titel}&&{Waehrung}&&{Durchgespielt}&&{Level}&&{Multiplikator}&&{upgradesString}";
                     writer.WriteLine(zeile);
                 }
+               
             }
             catch (Exception ex)
             {
@@ -47,11 +48,11 @@ namespace CommunismClicker
         }
 
 
-        public void Laden()
+        public void Laden(string pfad)
         {
-            if (!File.Exists(SpeicherPfad)) return;
+            if (!File.Exists(pfad)) return;
 
-            string[] teile = File.ReadAllText(SpeicherPfad).Split(new[] { "&&" }, StringSplitOptions.None);
+            string[] teile = File.ReadAllText(pfad).Split(new[] { "&&" }, StringSplitOptions.None);
             if (teile.Length < 13) return;
 
             Index = int.Parse(teile[0]);

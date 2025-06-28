@@ -31,15 +31,16 @@
             spielStarten = new Button();
             weiterSpielen = new Button();
             spielVerlassen = new Button();
+            comboBoxSpielstände = new ComboBox();
             SuspendLayout();
             // 
             // spielStarten
             // 
-            spielStarten.Location = new Point(158, 69);
+            spielStarten.Location = new Point(140, 69);
             spielStarten.Name = "spielStarten";
-            spielStarten.Size = new Size(126, 62);
+            spielStarten.Size = new Size(144, 62);
             spielStarten.TabIndex = 0;
-            spielStarten.Text = "Spiel Starten";
+            spielStarten.Text = "Neuen Spielstand erstellen";
             spielStarten.UseVisualStyleBackColor = true;
             spielStarten.Click += spielStarten_Click;
             // 
@@ -63,11 +64,22 @@
             spielVerlassen.UseVisualStyleBackColor = true;
             spielVerlassen.Click += spielVerlassen_Click;
             // 
+            // comboBoxSpielstände
+            // 
+            comboBoxSpielstände.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxSpielstände.FormattingEnabled = true;
+            comboBoxSpielstände.Location = new Point(297, 254);
+            comboBoxSpielstände.Name = "comboBoxSpielstände";
+            comboBoxSpielstände.Size = new Size(151, 28);
+            comboBoxSpielstände.TabIndex = 3;
+            comboBoxSpielstände.SelectedIndexChanged += comboBoxSpielstände_SelectedIndexChanged;
+            // 
             // Startfenster
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(comboBoxSpielstände);
             Controls.Add(spielVerlassen);
             Controls.Add(weiterSpielen);
             Controls.Add(spielStarten);
@@ -82,5 +94,6 @@
         private Button spielStarten;
         private Button weiterSpielen;
         private Button spielVerlassen;
+        private ComboBox comboBoxSpielstände;
     }
 }

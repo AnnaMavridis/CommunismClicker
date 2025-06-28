@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace CommunismClicker
 {
@@ -25,15 +26,21 @@ namespace CommunismClicker
 
         private Label waehrungLabel;
 
-        public Form1()
+        private Startfenster startFenster;
+        public Form1(Startfenster start)
         {
             InitializeComponent();
+            this.KeyPreview = true; // Wichtig!
+            this.KeyDown += Form1_KeyDown;
+            startFenster = start;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            string pfad = SpielstandManager.HolePfad("MeinSpielstand");
+            Spielstand.Instance.Laden(pfad);
 
-            Spielstand.Instance.Laden();
+
             waehrung = Spielstand.Instance.Waehrung;
             level = Spielstand.Instance.Level;
             multiplikator = Spielstand.Instance.Multiplikator;
@@ -81,9 +88,16 @@ namespace CommunismClicker
             Spielstand.Instance.Upgrades = upgrade;
             Spielstand.Instance.Index = 0;
 
-            Spielstand.Instance.Speichern();
 
-            MessageBox.Show("Spielstand gespeichert1!");
+            if (SpielstandManager.AktuellerPfad != null)
+            {
+                Spielstand.Instance.Speichern(SpielstandManager.AktuellerPfad);
+                MessageBox.Show("Spielstand gespeichert!");
+            }
+            else
+            {
+                MessageBox.Show("Fehler: Kein Speicherpfad bekannt!");
+            }
         }
 
 
@@ -163,6 +177,15 @@ namespace CommunismClicker
                 //Öffnen Upgrade Fenster
             }
 
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                startFenster.Show();
+                this.Close();
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)

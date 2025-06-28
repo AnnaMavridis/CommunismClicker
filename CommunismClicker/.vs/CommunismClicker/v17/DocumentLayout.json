@@ -3,24 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|c:\\users\\stute\\desktop\\informatik projekt\\communismclicker\\communismclicker\\communismclicker\\spielstand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|solutionrelative:communismclicker\\spielstand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|c:\\users\\stute\\desktop\\informatik projekt\\communismclicker\\communismclicker\\communismclicker\\startfenster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|solutionrelative:communismclicker\\startfenster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|c:\\users\\stute\\desktop\\informatik projekt\\communismclicker\\communismclicker\\communismclicker\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|solutionrelative:communismclicker\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|c:\\users\\stute\\desktop\\informatik projekt\\communismclicker\\communismclicker\\communismclicker\\spielstandmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|solutionrelative:communismclicker\\spielstandmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|c:\\users\\stute\\desktop\\informatik projekt\\communismclicker\\communismclicker\\communismclicker\\spielstand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|solutionrelative:communismclicker\\spielstand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|c:\\users\\stute\\desktop\\informatik projekt\\communismclicker\\communismclicker\\communismclicker\\startfenster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|solutionrelative:communismclicker\\startfenster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|c:\\users\\stute\\desktop\\informatik projekt\\communismclicker\\communismclicker\\communismclicker\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|solutionrelative:communismclicker\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\communismclicker\\startfenster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|solutionrelative:communismclicker\\startfenster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|c:\\users\\stute\\desktop\\informatik projekt\\communismclicker\\communismclicker\\communismclicker\\startfenster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|solutionrelative:communismclicker\\startfenster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|c:\\users\\stute\\desktop\\informatik projekt\\communismclicker\\communismclicker\\communismclicker\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{E8EABC4C-73FE-4860-8F40-9528EA14B11B}|CommunismClicker\\CommunismClicker.csproj|solutionrelative:communismclicker\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,73 +38,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{c9c0ae26-aa77-11d2-b3f0-0000f87570ee}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{de1fc918-f32e-4dd7-a915-1792a051f26b}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Spielstand.cs",
-              "DocumentMoniker": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Spielstand.cs",
-              "RelativeDocumentMoniker": "CommunismClicker\\Spielstand.cs",
-              "ToolTip": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Spielstand.cs",
-              "RelativeToolTip": "CommunismClicker\\Spielstand.cs",
-              "ViewState": "AgIAAD4AAAAAAAAAAAAgwEYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T08:13:44.731Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Startfenster.cs",
-              "DocumentMoniker": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Startfenster.cs",
-              "RelativeDocumentMoniker": "CommunismClicker\\Startfenster.cs",
-              "ToolTip": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Startfenster.cs",
-              "RelativeToolTip": "CommunismClicker\\Startfenster.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAgwBUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T07:54:29.958Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Startfenster.cs [Entwurf]",
-              "DocumentMoniker": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Startfenster.cs",
-              "RelativeDocumentMoniker": "CommunismClicker\\Startfenster.cs",
-              "ToolTip": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Startfenster.cs [Entwurf]",
-              "RelativeToolTip": "CommunismClicker\\Startfenster.cs [Entwurf]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T07:54:25.719Z",
-              "EditorCaption": " [Entwurf]"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Program.cs",
-              "RelativeDocumentMoniker": "CommunismClicker\\Program.cs",
-              "ToolTip": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Program.cs",
-              "RelativeToolTip": "CommunismClicker\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "SpielstandManager.cs",
+              "DocumentMoniker": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\SpielstandManager.cs",
+              "RelativeDocumentMoniker": "CommunismClicker\\SpielstandManager.cs",
+              "ToolTip": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\SpielstandManager.cs",
+              "RelativeToolTip": "CommunismClicker\\SpielstandManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T09:47:15.998Z",
+              "WhenOpened": "2025-06-28T12:18:16.439Z",
               "EditorCaption": ""
             },
             {
@@ -107,9 +61,72 @@
               "RelativeDocumentMoniker": "CommunismClicker\\Form1.cs",
               "ToolTip": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Form1.cs",
               "RelativeToolTip": "CommunismClicker\\Form1.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAYwAQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAkwBwAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T09:46:26.031Z",
+              "WhenOpened": "2025-06-28T11:55:51.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Form1.cs [Entwurf]",
+              "DocumentMoniker": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Form1.cs",
+              "RelativeDocumentMoniker": "CommunismClicker\\Form1.cs",
+              "ToolTip": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Form1.cs [Entwurf]",
+              "RelativeToolTip": "CommunismClicker\\Form1.cs [Entwurf]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T11:55:44.037Z",
+              "EditorCaption": " [Entwurf]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Spielstand.cs",
+              "DocumentMoniker": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Spielstand.cs",
+              "RelativeDocumentMoniker": "CommunismClicker\\Spielstand.cs",
+              "ToolTip": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Spielstand.cs",
+              "RelativeToolTip": "CommunismClicker\\Spielstand.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAYwEEAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T11:46:04.716Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Program.cs",
+              "RelativeDocumentMoniker": "CommunismClicker\\Program.cs",
+              "ToolTip": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Program.cs",
+              "RelativeToolTip": "CommunismClicker\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T11:34:34.531Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Startfenster.cs [Entwurf]",
+              "DocumentMoniker": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Startfenster.cs",
+              "RelativeDocumentMoniker": "CommunismClicker\\Startfenster.cs",
+              "ToolTip": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Startfenster.cs [Entwurf]",
+              "RelativeToolTip": "CommunismClicker\\Startfenster.cs [Entwurf]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T11:19:20.114Z",
+              "EditorCaption": " [Entwurf]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Startfenster.cs",
+              "DocumentMoniker": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Startfenster.cs",
+              "RelativeDocumentMoniker": "CommunismClicker\\Startfenster.cs",
+              "ToolTip": "C:\\Users\\stute\\Desktop\\Informatik Projekt\\CommunismClicker\\CommunismClicker\\CommunismClicker\\Startfenster.cs",
+              "RelativeToolTip": "CommunismClicker\\Startfenster.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAowF0AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T11:12:11.597Z",
               "EditorCaption": ""
             }
           ]
