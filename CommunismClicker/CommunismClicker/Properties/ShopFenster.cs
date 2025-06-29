@@ -10,9 +10,12 @@ namespace CommunismClicker
     {
         private List<ShopButton> rectangles = new List<ShopButton>();
         private string[] nachrichten = new string[7];
+        private Spielstand spielstand;
 
         public ShopFenster()
         {
+            this.spielstand = spielstand;
+
             this.Text = "Shop";
             this.DoubleBuffered = true;
 
@@ -26,19 +29,19 @@ namespace CommunismClicker
             int startX = 100;
             int currentY = 50;
             int spacing = 20;
-            AddRectangle(startX, currentY, 300, 80, "Das Manifest");
+            AddRectangle(startX, currentY, 300, 80, "Das Manifest", 1);
             currentY += 80 + spacing;
-            AddRectangle(startX, currentY, 300, 80, "Organisier Dich!");
+            AddRectangle(startX, currentY, 300, 80, "Organisier Dich!", 2);
             currentY += 80 + spacing;
-            AddRectangle(startX, currentY, 300, 80, "Das Kapital");
+            AddRectangle(startX, currentY, 300, 80, "Das Kapital", 3);
             currentY += 80 + spacing;
-            AddRectangle(startX, currentY, 300, 80, "Argumentverstärker");
+            AddRectangle(startX, currentY, 300, 80, "Argumentverstärker", 4);
             currentY += 80 + spacing;
-            AddRectangle(startX, currentY, 300, 80, "Kommunismus ist wenn..");
+            AddRectangle(startX, currentY, 300, 80, "Kommunismus ist wenn..", 5);
             currentY += 80 + spacing;
-            AddRectangle(startX, currentY, 300, 80, "Kein Salut mehr");
+            AddRectangle(startX, currentY, 300, 80, "Kein Salut mehr", 6);
             currentY += 80 + spacing;
-            AddRectangle(startX, currentY, 300, 80, "S.E.K.");
+            AddRectangle(startX, currentY, 300, 80, "S.E.K.", 7);
 
             nachrichten = Nachrichten();
         }
@@ -48,9 +51,9 @@ namespace CommunismClicker
             
         }
 
-        private void AddRectangle(int x, int y, int width, int height, string text)
+        private void AddRectangle(int x, int y, int width, int height, string text, int preis)
         {
-            rectangles.Add(new ShopButton(x, y, width, height, text));
+            rectangles.Add(new ShopButton(x, y, width, height, text, preis));
         }
 
         private void ShopFenster_Paint(object sender, PaintEventArgs e)
@@ -67,10 +70,19 @@ namespace CommunismClicker
             {
                 if (!rect.Geklickt && rect.Contains(e.Location))
                 {
-                    MessageBox.Show(nachrichten[index]);
-                    rect.Geklickt = true;
-                    Invalidate();
-                    break;
+                    if (spielstand.Waehrung >= rect.Preis)
+                    {
+
+
+                        MessageBox.Show(nachrichten[index]);
+                        rect.Geklickt = true;
+                        Invalidate();
+                        break;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Du bist noch nicht bereit!");
+                    }
                 }
             }
         }

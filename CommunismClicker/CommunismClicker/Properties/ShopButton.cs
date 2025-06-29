@@ -8,11 +8,16 @@ namespace CommunismClicker
         public string Text { get; private set; }
         public bool Geklickt { get; set; }
 
-        public ShopButton(int x, int y, int width, int height, string text)
+        public int Preis { get; set; }
+
+        public ShopButton(int x, int y, int width, int height, string text, int preis)
         {
             Area = new Rectangle(x, y, width, height);
             Text = text;
             Geklickt = false;
+            Preis = preis;
+
+            
         }
 
         public void Draw(Graphics g)
@@ -41,6 +46,19 @@ namespace CommunismClicker
             {
                 g.DrawRectangle(borderPen, Area);
             }
+
+
+
+
+            var farbe = Geklickt ? Brushes.Gray : Brushes.LightBlue;
+            g.FillRectangle(farbe, Area);
+            g.DrawRectangle(Pens.Black, Area);
+
+            using (Font font = new Font("Arial", 12))
+            {
+                g.DrawString($"{Text} ({Preis}₽)", font, Brushes.Black, Area.X + 10, Area.Y + 25);
+            }
+
         }
 
         public bool Contains(Point p)
