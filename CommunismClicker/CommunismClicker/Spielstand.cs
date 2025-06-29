@@ -8,17 +8,6 @@ namespace CommunismClicker
 {
     internal class Spielstand
     {
-        private static Spielstand _instance;
-        public static Spielstand Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new Spielstand();
-                return _instance;
-            }
-        }
-
         public int Index = 0;
         public string Titel = "";
         public int Waehrung = 0;
@@ -26,9 +15,7 @@ namespace CommunismClicker
         public int Level = 0;
         public double Multiplikator = 1.0;
         public bool[] Upgrades = new bool[7];
-
-        private static readonly string SpeicherPfad = "spielstand.txt";
-
+        
         public void Speichern(string pfad)
         {
             try
@@ -46,7 +33,6 @@ namespace CommunismClicker
                 MessageBox.Show("Fehler beim Speichern: " + ex.Message);
             }
         }
-
 
         public void Laden(string pfad)
         {

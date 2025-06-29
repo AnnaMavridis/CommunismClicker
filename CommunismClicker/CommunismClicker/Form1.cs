@@ -9,6 +9,7 @@ namespace CommunismClicker
     public partial class Form1 : Form
     {
         Image marxImage;
+        Image stern;
 
         private RectangleF marxBereich;
         private Rectangle bereichUpgradeButton;
@@ -16,34 +17,37 @@ namespace CommunismClicker
         private int upgradeKosten = 20;
         private float upgradeFaktor = 1.5f;
         private float fortschrittProzent = 0f;
+        private string pfad;
 
-        public double waehrung = Spielstand.Instance.Waehrung;
-        public int level = Spielstand.Instance.Level;
-        public bool[] upgrade = Spielstand.Instance.Upgrades;
-        public double multiplikator = Spielstand.Instance.Multiplikator;
-        public bool durchgespielt = Spielstand.Instance.Durchgespielt;
+        Spielstand spielstand = new Spielstand();
+
+        public double Waehrung;
+        public int Level;
+        public bool[] Upgrade;
+        public double Multiplikator;
+        public bool Durchgespielt;
 
         private Label waehrungLabel;
 
         private Startfenster startFenster;
-        public Form1(Startfenster start)
+        public Form1(Startfenster start, string pPfad)
         {
             InitializeComponent();
             this.KeyPreview = true; // Wichtig!
             this.KeyDown += Form1_KeyDown;
             startFenster = start;
+            pfad = pPfad;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            string pfad = SpielstandManager.HolePfad("MeinSpielstand");
-            Spielstand.Instance.Laden(pfad);
+            spielstand.Laden(pfad);
 
-            waehrung = Spielstand.Instance.Waehrung;
-            level = Spielstand.Instance.Level;
-            multiplikator = Spielstand.Instance.Multiplikator;
-            durchgespielt = Spielstand.Instance.Durchgespielt;
-            upgrade = Spielstand.Instance.Upgrades;
+            Waehrung = spielstand.Waehrung;
+            Level = spielstand.Level;
+            Upgrade = spielstand.Upgrades;
+            Multiplikator = spielstand.Multiplikator;
+            Durchgespielt = spielstand.Durchgespielt;
 
             this.DoubleBuffered = true;
 
@@ -57,16 +61,16 @@ namespace CommunismClicker
             this.MaximizeBox = false;
 
             this.marxImage = Properties.Resources.marxImage;
+            this.stern = Properties.Resources.RoterStern;
 
             this.waehrungLabel = new Label();
             this.waehrungLabel.AutoSize = true;
             this.waehrungLabel.Font = new Font("Arial", 16, FontStyle.Bold);
             this.waehrungLabel.Location = new Point(20, 20);
-            this.waehrungLabel.Text = $"Währung: {waehrung} ☭";
+            this.waehrungLabel.Text = $"Währung: {Convert.ToInt32(Waehrung)} ☭";
 
             this.Controls.Add(this.waehrungLabel);
             this.Resize += (s, ev) => this.Invalidate();
-
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -129,7 +133,7 @@ namespace CommunismClicker
                 buttonX + (buttonBreite/2 - textSize.Width) / 2,
                 10 + (buttonHoehe/2 - textSize.Height) / 2);
 
-            fortschrittProzent = Math.Min(1f, (float)waehrung / upgradeKosten);
+            fortschrittProzent = Math.Min(1f, (float)Waehrung / upgradeKosten);
 
             int balkenBreite = (int)(buttonBreite * fortschrittProzent);
             int balkenHoehe = 16;
@@ -140,14 +144,22 @@ namespace CommunismClicker
 
             g.FillRectangle(Brushes.Black, new Rectangle(balkenX, balkenY, buttonBreite - 4, balkenHoehe));
             g.FillRectangle(Brushes.Yellow, progressBar);
-        }
 
+            if (Durchgespielt)
+            {
+                int sternMaß = ClientSize.Width / 32;
+                int sternRand = sternMaß / 3;
+
+                g.DrawImage(stern, sternRand, ClientSize.Height-(sternRand*4), sternMaß, sternMaß);
+            }
+        }
+        
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
             if (marxBereich.Contains(e.Location))
             {
-                waehrung += Convert.ToInt32(multiplikator);
-                waehrungLabel.Text = $"Währung: {waehrung} ☭";
+                Waehrung += Convert.ToInt32(Multiplikator);
+                waehrungLabel.Text = $"Währung: {Waehrung} ☭";
                 Invalidate();
             }
             else if (bereichUpgradeButton.Contains(e.Location))
@@ -174,17 +186,17 @@ namespace CommunismClicker
             DialogResult result = MessageBox.Show("Möchtest du speichern?", "Zurück zum Menu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                Spielstand.Instance.Waehrung = Convert.ToInt32(waehrung);
-                Spielstand.Instance.Level = level;
-                Spielstand.Instance.Multiplikator = multiplikator;
-                Spielstand.Instance.Durchgespielt = durchgespielt;
-                Spielstand.Instance.Upgrades = upgrade;
+                spielstand.Waehrung = Convert.ToInt32(Waehrung);
+                spielstand.Level = Level;
+                spielstand.Multiplikator = Multiplikator;
+                spielstand.Durchgespielt = Durchgespielt;
+                spielstand.Upgrades = Upgrade;
 
 
 
                 if (SpielstandManager.AktuellerPfad != null)
                 {
-                    Spielstand.Instance.Speichern(SpielstandManager.AktuellerPfad);
+                    spielstand.Speichern(SpielstandManager.AktuellerPfad);
                     MessageBox.Show("Spielstand gespeichert!");
                 }
                 else

@@ -14,6 +14,8 @@ namespace CommunismClicker
     {
 
         private readonly string speicherOrdner = "spielstaende";
+        private Spielstand aktuellerSpielstand = new Spielstand();
+
         public Startfenster()
         {
             InitializeComponent();
@@ -64,15 +66,15 @@ namespace CommunismClicker
             if (string.IsNullOrWhiteSpace(name)) return;
 
             // Neue Werte setzen
-            Spielstand.Instance.Index = 0;
-            Spielstand.Instance.Titel = name;
-            Spielstand.Instance.Waehrung = 0;
-            Spielstand.Instance.Durchgespielt = false;
-            Spielstand.Instance.Level = 1;
-            Spielstand.Instance.Multiplikator = 1.0;
-            Spielstand.Instance.Upgrades = new bool[7];
+            aktuellerSpielstand.Index = 0;
+            aktuellerSpielstand.Titel = name;
+            aktuellerSpielstand.Waehrung = 0;
+            aktuellerSpielstand.Durchgespielt = false;
+            aktuellerSpielstand.Level = 1;
+            aktuellerSpielstand.Multiplikator = 1.0;
+            aktuellerSpielstand.Upgrades = new bool[7];
 
-            Spielstand.Instance.Speichern(HolePfad(name));
+            aktuellerSpielstand.Speichern(HolePfad(name));
 
             LadeSpielstandListe();
             comboBoxSpielstände.SelectedItem = name;
@@ -88,11 +90,11 @@ namespace CommunismClicker
             }
 
             string datei = HolePfad(comboBoxSpielstände.SelectedItem.ToString());
-            Spielstand.Instance.Laden(datei);
+            aktuellerSpielstand.Laden(datei);
             SpielstandManager.AktuellerPfad = datei;
 
             // Neues Fenster öffnen
-            Form1 spielForm = new Form1(this);
+            Form1 spielForm = new Form1(this, datei);
             spielForm.Show();
 
             // Startfenster ausblenden oder schließen
