@@ -27,6 +27,12 @@ namespace CommunismClicker
         public double Multiplikator;
         public bool Durchgespielt;
 
+        private float bildSkalierung = 1.0f;
+        private System.Windows.Forms.Timer animationsTimer;
+        private int animationsSchritte = 0;
+        private const int maxSchritte = 5;
+        private const float skalierungProSchritt = 0.02f;
+
         private Label waehrungLabel;
 
         private Startfenster startFenster;
@@ -37,6 +43,9 @@ namespace CommunismClicker
             this.KeyDown += Form1_KeyDown;
             startFenster = start;
             pfad = pPfad;
+            animationsTimer = new System.Windows.Forms.Timer();
+            animationsTimer.Interval = 30; // alle 30ms
+            animationsTimer.Tick += AnimationsTimer_Tick;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -105,6 +114,15 @@ namespace CommunismClicker
             marxBereich = new RectangleF(xMarx, yMarx, zeichnungsBreite, zeichnungsHoehe);
             g.DrawImage(marxImage, marxBereich);
 
+            float skaliertBreite = zeichnungsBreite * bildSkalierung; // Animation beim Klicken
+            float skaliertHoehe = zeichnungsHoehe * bildSkalierung;
+            float skaliertX = (ClientSize.Width - skaliertBreite) / 2f;
+            float skaliertY = (ClientSize.Height - skaliertHoehe) / 2f;
+
+            marxBereich = new RectangleF(skaliertX, skaliertY, skaliertBreite, skaliertHoehe);
+            g.DrawImage(marxImage, marxBereich);
+
+
             int buttonBreite = (int)(ClientSize.Width * 0.15f);
             int buttonHoehe = (int)(ClientSize.Height * 0.08f);
             int abstandVomRand = 30;
@@ -158,6 +176,8 @@ namespace CommunismClicker
         {
             if (marxBereich.Contains(e.Location))
             {
+                animationsSchritte = 0;
+                animationsTimer.Start();
                 Waehrung += Convert.ToInt32(Multiplikator);
                 waehrungLabel.Text = $"Währung: {Waehrung} ☭";
                 Invalidate();
@@ -211,6 +231,26 @@ namespace CommunismClicker
         private void timer1_Tick(object sender, EventArgs e)
         {
             this.Refresh();
+        }
+
+        private void AnimationsTimer_Tick(object sender, EventArgs e)
+        {
+            if (animationsSchritte < maxSchritte)
+            {
+                bildSkalierung += skalierungProSchritt;
+            }
+            else if (animationsSchritte < maxSchritte * 2)
+            {
+                bildSkalierung -= skalierungProSchritt;
+            }
+            else
+            {
+                bildSkalierung = 1.0f;
+                animationsTimer.Stop();
+            }
+
+            animationsSchritte++;
+            Invalidate(); // Neuzeichnen auslösen
         }
     }
 }

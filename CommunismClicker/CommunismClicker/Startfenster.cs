@@ -16,6 +16,10 @@ namespace CommunismClicker
         private readonly string speicherOrdner = "spielstaende";
         private Spielstand aktuellerSpielstand = new Spielstand();
 
+        public string HolePfad(string name)
+        {
+            return Path.Combine(speicherOrdner, name + ".txt");
+        }
         public Startfenster()
         {
             InitializeComponent();
@@ -26,33 +30,6 @@ namespace CommunismClicker
             this.FormBorderStyle = FormBorderStyle.None;
         }
 
-        private void LadeSpielstandListe()
-        {
-            comboBoxSpielstände.Items.Clear(); // alte Liste leeren
-
-            // Stelle sicher, dass der Ordner existiert
-            Directory.CreateDirectory(speicherOrdner);
-
-            // Spielstand-Dateien holen (alle .txt-Dateien im Ordner)
-            string[] dateien = Directory.GetFiles(speicherOrdner, "*.txt");
-
-            // Nur den Dateinamen ohne Pfad und ohne Erweiterung anzeigen
-            foreach (string datei in dateien)
-            {
-                string name = Path.GetFileNameWithoutExtension(datei);
-                comboBoxSpielstände.Items.Add(name);
-            }
-
-            // Optional: ersten Eintrag auswählen
-            if (comboBoxSpielstände.Items.Count > 0)
-                comboBoxSpielstände.SelectedIndex = 0;
-        }
-
-        public string HolePfad(string name)
-        {
-            return Path.Combine(speicherOrdner, name + ".txt");
-        }
-
         private void Startfenster_Load(object sender, EventArgs e)
         {
             string pfad = Path.Combine(Application.StartupPath, "Resources", "Flag_ANTIFA.png");
@@ -60,7 +37,45 @@ namespace CommunismClicker
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
-        private void spielStarten_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// Die Methode LadeSpielstandListe lädt alle Spielstände die im Ordner spielstaende gespeichert sind.
+        /// Die Spielstände werden Alphabetisch sortiert und es wird automatisch der letzte Spielstand der gespielt wurde ausgewählt.
+        /// </summary>
+        private void LadeSpielstandListe()
+        {
+            comboBoxSpielstände.Items.Clear();
+            Directory.CreateDirectory(speicherOrdner);
+            var dateien = Directory.GetFiles(speicherOrdner, "*.txt")
+                                   .Select(f => Path.GetFileNameWithoutExtension(f))
+                                   .OrderBy(name => name) 
+                                   .ToList();
+
+            foreach (var name in dateien)
+                comboBoxSpielstände.Items.Add(name);
+
+           
+            if (File.Exists("letzterSpielstand.txt")) // Schaut was der letzte gespielte spielstand ist
+            {
+                string letzter = File.ReadAllText("letzterSpielstand.txt");
+                if (comboBoxSpielstände.Items.Contains(letzter))
+                {
+                    comboBoxSpielstände.SelectedItem = letzter;
+                }
+                else if (comboBoxSpielstände.Items.Count > 0)
+                {
+                    comboBoxSpielstände.SelectedIndex = 0; 
+                }
+            }
+            else if (comboBoxSpielstände.Items.Count > 0)
+            {
+                comboBoxSpielstände.SelectedIndex = 0;
+            }
+        }
+
+        
+
+        private void spielStarten_Click(object sender, EventArgs e) // Diese Methode Erstellt einen neuen Spielstand
         {
             string name = Microsoft.VisualBasic.Interaction.InputBox("Name des neuen Spielstands:", "Neuer Spielstand", "Spielstand_" + DateTime.Now.Ticks);
             if (string.IsNullOrWhiteSpace(name)) return;
@@ -81,13 +96,20 @@ namespace CommunismClicker
             MessageBox.Show("Neuer Spielstand erstellt!");
         }
 
-        private void weiterSpielen_Click(object sender, EventArgs e)
+        private void weiterSpielen_Click(object sender, EventArgs e) // Diese Methode lädt den ausgewählten Spielstand
         {
             if (comboBoxSpielstände.SelectedItem == null)
             {
                 MessageBox.Show("Bitte einen Spielstand auswählen.");
                 return;
             }
+
+            string name = comboBoxSpielstände.SelectedItem.ToString();
+
+            // letzten Spielstand speichern
+            File.WriteAllText("letzterSpielstand.txt", name);
+
+
 
             string datei = HolePfad(comboBoxSpielstände.SelectedItem.ToString());
             aktuellerSpielstand.Laden(datei);
