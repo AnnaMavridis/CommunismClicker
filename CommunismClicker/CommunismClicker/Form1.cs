@@ -10,10 +10,9 @@ namespace CommunismClicker
     {
         Image marxImage;
 
-        private Button saveButton;
-
         private RectangleF marxBereich;
         private Rectangle bereichUpgradeButton;
+        private Rectangle zurueckButton;
         private int upgradeKosten = 20;
         private float upgradeFaktor = 1.5f;
         private float fortschrittProzent = 0f;
@@ -40,22 +39,11 @@ namespace CommunismClicker
             string pfad = SpielstandManager.HolePfad("MeinSpielstand");
             Spielstand.Instance.Laden(pfad);
 
-
-
             waehrung = Spielstand.Instance.Waehrung;
             level = Spielstand.Instance.Level;
             multiplikator = Spielstand.Instance.Multiplikator;
             durchgespielt = Spielstand.Instance.Durchgespielt;
             upgrade = Spielstand.Instance.Upgrades;
-
-            this.saveButton = new Button();
-            this.saveButton.Text = "Spielstand speichern";
-            this.saveButton.Font = new Font("Arial", 10, FontStyle.Regular);
-            this.saveButton.Size = new Size(180, 40);
-            this.saveButton.Location = new Point(20, 60);
-            this.saveButton.Click += SaveButton_Click;
-            this.Controls.Add(saveButton);
-
 
             this.DoubleBuffered = true;
 
@@ -65,6 +53,7 @@ namespace CommunismClicker
             this.Text = "Communism Clicker";
             this.WindowState = FormWindowState.Maximized;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = FormBorderStyle.None;
             this.MaximizeBox = false;
 
             this.marxImage = Properties.Resources.marxImage;
@@ -79,29 +68,6 @@ namespace CommunismClicker
             this.Resize += (s, ev) => this.Invalidate();
 
         }
-
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-            Spielstand.Instance.Waehrung = Convert.ToInt32(waehrung);
-            Spielstand.Instance.Level = level;
-            Spielstand.Instance.Multiplikator = multiplikator;
-            Spielstand.Instance.Durchgespielt = durchgespielt;
-            Spielstand.Instance.Upgrades = upgrade;
-
-
-
-            if (SpielstandManager.AktuellerPfad != null)
-            {
-                Spielstand.Instance.Speichern(SpielstandManager.AktuellerPfad);
-                MessageBox.Show("Spielstand gespeichert!");
-            }
-            else
-            {
-                MessageBox.Show("Fehler: Kein Speicherpfad bekannt!");
-            }
-
-        }
-
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
@@ -153,6 +119,16 @@ namespace CommunismClicker
                 buttonX + (buttonBreite - textSize.Width) / 2,
                 buttonY + (buttonHoehe - textSize.Height) / 2 - 10);
 
+            zurueckButton = new Rectangle(buttonX, 10, buttonBreite/2, buttonHoehe/2);
+
+            g.FillRectangle(Brushes.Red, zurueckButton);
+            g.DrawRectangle(Pens.Black, zurueckButton);
+
+            string zurueckText = "Zurück";
+            g.DrawString(zurueckText, this.Font, Brushes.White,
+                buttonX + (buttonBreite/2 - textSize.Width) / 2,
+                10 + (buttonHoehe/2 - textSize.Height) / 2);
+
             fortschrittProzent = Math.Min(1f, (float)waehrung / upgradeKosten);
 
             int balkenBreite = (int)(buttonBreite * fortschrittProzent);
@@ -178,16 +154,46 @@ namespace CommunismClicker
             {
                 ShopFenster shop = new ShopFenster();
                 shop.ShowDialog();
-            } 
+            }
+            else if (zurueckButton.Contains(e.Location))
+            {
+                ZurueckZumMenu();
+            }
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
-                startFenster.Show();
-                this.Close();
+                ZurueckZumMenu();
             }
+        }
+
+        private void ZurueckZumMenu()
+        {
+            DialogResult result = MessageBox.Show("Möchtest du speichern?", "Zurück zum Menu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Spielstand.Instance.Waehrung = Convert.ToInt32(waehrung);
+                Spielstand.Instance.Level = level;
+                Spielstand.Instance.Multiplikator = multiplikator;
+                Spielstand.Instance.Durchgespielt = durchgespielt;
+                Spielstand.Instance.Upgrades = upgrade;
+
+
+
+                if (SpielstandManager.AktuellerPfad != null)
+                {
+                    Spielstand.Instance.Speichern(SpielstandManager.AktuellerPfad);
+                    MessageBox.Show("Spielstand gespeichert!");
+                }
+                else
+                {
+                    MessageBox.Show("Fehler: Kein Speicherpfad bekannt!");
+                }
+            }
+            startFenster.Show();
+            this.Close();
         }
 
         private void timer1_Tick(object sender, EventArgs e)

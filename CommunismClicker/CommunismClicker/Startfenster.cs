@@ -21,6 +21,7 @@ namespace CommunismClicker
             LadeSpielstandListe();
             this.KeyPreview = true;
             this.KeyDown += Form1_KeyDown;
+            this.FormBorderStyle = FormBorderStyle.None;
         }
 
         private void LadeSpielstandListe()
@@ -49,6 +50,7 @@ namespace CommunismClicker
         {
             return Path.Combine(speicherOrdner, name + ".txt");
         }
+
         private void Startfenster_Load(object sender, EventArgs e)
         {
             string pfad = Path.Combine(Application.StartupPath, "Resources", "Flag_ANTIFA.png");
