@@ -38,7 +38,7 @@ namespace CommunismClicker
             })
             using (Font font = new Font("Arial", 12))
             {
-                g.DrawString(Text, font, textBrush, Area, sf);
+                g.DrawString($"{Text} ({Preis}☭)", font, textBrush, Area, sf);
             }
 
             // Optional: Rahmen zeichnen
@@ -50,14 +50,7 @@ namespace CommunismClicker
 
 
 
-            var farbe = Geklickt ? Brushes.Gray : Brushes.LightBlue;
-            g.FillRectangle(farbe, Area);
-            g.DrawRectangle(Pens.Black, Area);
 
-            using (Font font = new Font("Arial", 12))
-            {
-                g.DrawString($"{Text} ({Preis}₽)", font, Brushes.Black, Area.X + 10, Area.Y + 25);
-            }
 
         }
 
