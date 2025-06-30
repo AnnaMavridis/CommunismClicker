@@ -8,6 +8,7 @@ namespace CommunismClicker
 {
     internal class Spielstand
     {
+        public static Spielstand AktuellerSpielstand = new Spielstand();
         public int Index = 0;
         public string Titel = "";
         public int Waehrung = 0;

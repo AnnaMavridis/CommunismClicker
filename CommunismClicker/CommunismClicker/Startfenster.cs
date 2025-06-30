@@ -109,6 +109,7 @@ namespace CommunismClicker
             // letzten Spielstand speichern
             File.WriteAllText("letzterSpielstand.txt", name);
 
+            Spielstand.AktuellerSpielstand = aktuellerSpielstand;
 
 
             string datei = HolePfad(comboBoxSpielstände.SelectedItem.ToString());

@@ -70,22 +70,21 @@ namespace CommunismClicker
             {
                 if (!rect.Geklickt && rect.Contains(e.Location))
                 {
-                    if (spielstand.Waehrung >= rect.Preis)
+                    if (Spielstand.AktuellerSpielstand.Waehrung >= rect.Preis)
                     {
-
 
                         MessageBox.Show(nachrichten[index]);
                         rect.Geklickt = true;
 
                         switch (index)
                         {
-                            case 0: spielstand.Multiplikator += 0.25; break;
-                            case 1: spielstand.Multiplikator += 0.5; break;
-                            case 2: spielstand.Multiplikator += 1.0; break;
-                            case 3: spielstand.Multiplikator += 2.5; break;
-                            case 4: spielstand.Multiplikator += 5.0; break;
-                            case 5: spielstand.Multiplikator += 7.25; break;
-                            case 6: spielstand.Multiplikator += 9.0; break;
+                            case 0: Spielstand.AktuellerSpielstand.Multiplikator += 0.25; break;
+                            case 1: Spielstand.AktuellerSpielstand.Multiplikator += 0.5; break;
+                            case 2: Spielstand.AktuellerSpielstand.Multiplikator += 1.0; break;
+                            case 3: Spielstand.AktuellerSpielstand.Multiplikator += 2.5; break;
+                            case 4: Spielstand.AktuellerSpielstand.Multiplikator += 5.0; break;
+                            case 5: Spielstand.AktuellerSpielstand.Multiplikator += 7.25; break;
+                            case 6: Spielstand.AktuellerSpielstand.Multiplikator += 9.0; break;
                            
                         }
 
