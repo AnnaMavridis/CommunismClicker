@@ -72,7 +72,7 @@ namespace CommunismClicker
                 {
                     if (Spielstand.AktuellerSpielstand.Waehrung >= rect.Preis)
                     {
-
+                        Spielstand.AktuellerSpielstand.Waehrung -= rect.Preis;
                         MessageBox.Show(nachrichten[index]);
                         rect.Geklickt = true;
 

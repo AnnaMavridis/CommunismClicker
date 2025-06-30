@@ -76,7 +76,7 @@ namespace CommunismClicker
             this.waehrungLabel.AutoSize = true;
             this.waehrungLabel.Font = new Font("Arial", 16, FontStyle.Bold);
             this.waehrungLabel.Location = new Point(20, 20);
-            this.waehrungLabel.Text = $"Währung: {Convert.ToInt32(Waehrung)} ☭";
+            this.waehrungLabel.Text = $"Währung: {Convert.ToInt32(Spielstand.AktuellerSpielstand.Waehrung)} ☭";
 
             this.Controls.Add(this.waehrungLabel);
             this.Resize += (s, ev) => this.Invalidate();
@@ -178,8 +178,8 @@ namespace CommunismClicker
             {
                 animationsSchritte = 0;
                 animationsTimer.Start();
-                Waehrung += Convert.ToInt32(Multiplikator);
-                waehrungLabel.Text = $"Währung: {Waehrung} ☭";
+                Spielstand.AktuellerSpielstand.Waehrung += Convert.ToInt32(Multiplikator);
+                waehrungLabel.Text = $"Währung: {Spielstand.AktuellerSpielstand.Waehrung} ☭";
                 Invalidate();
             }
             else if (bereichUpgradeButton.Contains(e.Location))
@@ -206,7 +206,7 @@ namespace CommunismClicker
             DialogResult result = MessageBox.Show("Möchtest du speichern?", "Zurück zum Menu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                spielstand.Waehrung = Convert.ToInt32(Waehrung);
+                spielstand.Waehrung = Convert.ToInt32(Spielstand.AktuellerSpielstand.Waehrung);
                 spielstand.Level = Level;
                 spielstand.Multiplikator = Multiplikator;
                 spielstand.Durchgespielt = Durchgespielt;
