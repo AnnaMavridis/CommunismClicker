@@ -75,12 +75,11 @@ namespace CommunismClicker
 
         
 
-        private void spielStarten_Click(object sender, EventArgs e) // Diese Methode Erstellt einen neuen Spielstand
+        private void spielStarten_Click(object sender, EventArgs e)// Diese Methode Erstellt einen neuen Spielstand
         {
             string name = Microsoft.VisualBasic.Interaction.InputBox("Name des neuen Spielstands:", "Neuer Spielstand", "Spielstand_" + DateTime.Now.Ticks);
             if (string.IsNullOrWhiteSpace(name)) return;
 
-            // Neue Werte setzen
             aktuellerSpielstand.Index = 0;
             aktuellerSpielstand.Titel = name;
             aktuellerSpielstand.Waehrung = 0;
@@ -120,7 +119,7 @@ namespace CommunismClicker
             Form1 spielForm = new Form1(this, datei);
             spielForm.Show();
 
-            // Startfenster ausblenden oder schließen
+            // Startfenster ausblenden 
             this.Hide();
         }
 

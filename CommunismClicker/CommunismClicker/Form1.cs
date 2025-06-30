@@ -33,7 +33,7 @@ namespace CommunismClicker
         private const int maxSchritte = 5;
         private const float skalierungProSchritt = 0.02f;
 
-        private Label waehrungLabel;
+        public Label waehrungLabel;
 
         private Startfenster startFenster;
         public Form1(Startfenster start, string pPfad)
