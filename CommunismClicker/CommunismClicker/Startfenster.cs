@@ -70,7 +70,7 @@ namespace CommunismClicker
             aktuellerSpielstand.Titel = name;
             aktuellerSpielstand.Waehrung = 0;
             aktuellerSpielstand.Durchgespielt = false;
-            aktuellerSpielstand.Level = 1;
+            aktuellerSpielstand.Level = 0;
             aktuellerSpielstand.Multiplikator = 1.0;
             aktuellerSpielstand.Upgrades = new bool[7];
 
