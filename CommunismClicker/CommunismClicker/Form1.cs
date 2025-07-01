@@ -31,6 +31,12 @@ namespace CommunismClicker
         private Label levelLabel;
         private string[] levelText;
 
+        private float bildSkalierung = 1.0f;
+        private System.Windows.Forms.Timer animationsTimer;
+        private int animationsSchritte = 0;
+        private const int maxSchritte = 5;
+        private const float skalierungProSchritt = 0.02f;
+
         private Startfenster startFenster;
         public Form1(Startfenster start, string pPfad)
         {
@@ -39,6 +45,9 @@ namespace CommunismClicker
             this.KeyDown += Form1_KeyDown;
             startFenster = start;
             pfad = pPfad;
+            animationsTimer = new System.Windows.Forms.Timer();
+            animationsTimer.Interval = 30; // alle 30ms
+            animationsTimer.Tick += AnimationsTimer_Tick;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -69,7 +78,7 @@ namespace CommunismClicker
             this.waehrungLabel.AutoSize = true;
             this.waehrungLabel.Font = new Font("Arial", 16, FontStyle.Bold);
             this.waehrungLabel.Location = new Point(20, 20);
-            this.waehrungLabel.Text = $"Währung: {Convert.ToInt32(Waehrung)} ☭";
+            this.waehrungLabel.Text = $"Währung: {Convert.ToInt32(Spielstand.AktuellerSpielstand.Waehrung)} ☭";
 
             this.levelLabel = new Label();
             this.levelLabel.AutoSize = true;
@@ -115,6 +124,15 @@ namespace CommunismClicker
 
             marxBereich = new RectangleF(xMarx, yMarx, zeichnungsBreite, zeichnungsHoehe);
             g.DrawImage(marxImage, marxBereich);
+
+            float skaliertBreite = zeichnungsBreite * bildSkalierung; // Animation beim Klicken
+            float skaliertHoehe = zeichnungsHoehe * bildSkalierung;
+            float skaliertX = (ClientSize.Width - skaliertBreite) / 2f;
+            float skaliertY = (ClientSize.Height - skaliertHoehe) / 2f;
+
+            marxBereich = new RectangleF(skaliertX, skaliertY, skaliertBreite, skaliertHoehe);
+            g.DrawImage(marxImage, marxBereich);
+
 
             int buttonBreite = (int)(ClientSize.Width * 0.15f);
             int buttonHoehe = (int)(ClientSize.Height * 0.08f);
@@ -169,8 +187,10 @@ namespace CommunismClicker
         {
             if (marxBereich.Contains(e.Location))
             {
-                Waehrung += Convert.ToInt32(Multiplikator);
-                waehrungLabel.Text = $"Währung: {Waehrung} ☭";
+                animationsSchritte = 0;
+                animationsTimer.Start();
+                Spielstand.AktuellerSpielstand.Waehrung += Convert.ToInt32(Multiplikator);
+                waehrungLabel.Text = $"Währung: {Spielstand.AktuellerSpielstand.Waehrung} ☭";
                 Invalidate();
             }
             else if (bereichUpgradeButton.Contains(e.Location))
@@ -226,7 +246,7 @@ namespace CommunismClicker
             DialogResult result = MessageBox.Show("Möchtest du speichern?", "Zurück zum Menu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                spielstand.Waehrung = Convert.ToInt32(Waehrung);
+                spielstand.Waehrung = Convert.ToInt32(Spielstand.AktuellerSpielstand.Waehrung);
                 spielstand.Level = Level;
                 spielstand.Multiplikator = Multiplikator;
                 spielstand.Durchgespielt = Durchgespielt;
@@ -249,6 +269,26 @@ namespace CommunismClicker
         private void timer1_Tick(object sender, EventArgs e)
         {
             this.Refresh();
+        }
+
+        private void AnimationsTimer_Tick(object sender, EventArgs e)
+        {
+            if (animationsSchritte < maxSchritte)
+            {
+                bildSkalierung += skalierungProSchritt;
+            }
+            else if (animationsSchritte < maxSchritte * 2)
+            {
+                bildSkalierung -= skalierungProSchritt;
+            }
+            else
+            {
+                bildSkalierung = 1.0f;
+                animationsTimer.Stop();
+            }
+
+            animationsSchritte++;
+            Invalidate(); // Neuzeichnen auslösen
         }
     }
 }
