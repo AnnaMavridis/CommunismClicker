@@ -25,13 +25,13 @@ namespace CommunismClicker
             this.Paint += ShopFenster_Paint;
             this.MouseClick += ShopFenster_MouseClick;
 
-            // Einzelne Upgrades hinzufügen
+            // Einzelne Upgrades hinzufügen __Muss noch besser skaliert werden
             int startX = 100;
             int currentY = 50;
             int spacing = 20;
             AddRectangle(startX, currentY, 300, 80, "Das Manifest", 25);
             currentY += 80 + spacing;
-            AddRectangle(startX, currentY, 300, 80, "Organisier Dich!", 75);
+            AddRectangle(startX, currentY, 300, 80, "Organisier Dich!", 100);
             currentY += 80 + spacing;
             AddRectangle(startX, currentY, 300, 80, "Das Kapital", 250);
             currentY += 80 + spacing;
@@ -39,18 +39,25 @@ namespace CommunismClicker
             currentY += 80 + spacing;
             AddRectangle(startX, currentY, 300, 80, "Kommunismus ist wenn..", 1000);
             currentY += 80 + spacing;
-            AddRectangle(startX, currentY, 300, 80, "Kein Salut mehr", 1500);
+            AddRectangle(startX, currentY, 300, 80, "Kein Salut mehr", 1250);
             currentY += 80 + spacing;
             AddRectangle(startX, currentY, 300, 80, "S.E.K.", 2000);
+
+
+            for (int i = 0; i < rectangles.Count && i < Spielstand.AktuellerSpielstand.Upgrades.Length; i++)
+            {
+                rectangles[i].Geklickt = Spielstand.AktuellerSpielstand.Upgrades[i];
+            }
 
             nachrichten = Nachrichten();
         }
 
         private void ShopFenster_Load(object sender, EventArgs e)
         {
-            
+
         }
 
+        //Methode um Rechtecke(Buttons) zu erzeugen
         private void AddRectangle(int x, int y, int width, int height, string text, int preis)
         {
             rectangles.Add(new ShopButton(x, y, width, height, text, preis));
@@ -68,26 +75,37 @@ namespace CommunismClicker
         {
             foreach (var (rect, index) in rectangles.Select((rect, index) => (rect, index)))
             {
+                //falls auf Rechteck geklickt
                 if (!rect.Geklickt && rect.Contains(e.Location))
                 {
+                    //falls genug Währung
                     if (Spielstand.AktuellerSpielstand.Waehrung >= rect.Preis)
                     {
+                        //abziehen von Währung
                         Spielstand.AktuellerSpielstand.Waehrung -= rect.Preis;
-       
+
+                        //Nachrichten anzeigen
                         MessageBox.Show(nachrichten[index]);
+                        //Variable auf true um zu speichern ob Upgrade gekauft wurde
                         rect.Geklickt = true;
 
+                        //Multiplikatoren erhöhen
                         switch (index)
                         {
-                            case 0: Spielstand.AktuellerSpielstand.Multiplikator += 0.25; break;
-                            case 1: Spielstand.AktuellerSpielstand.Multiplikator += 0.5; break;
-                            case 2: Spielstand.AktuellerSpielstand.Multiplikator += 1.0; break;
-                            case 3: Spielstand.AktuellerSpielstand.Multiplikator += 2.5; break;
-                            case 4: Spielstand.AktuellerSpielstand.Multiplikator += 5.0; break;
-                            case 5: Spielstand.AktuellerSpielstand.Multiplikator += 7.25; break;
-                            case 6: Spielstand.AktuellerSpielstand.Multiplikator += 9.0; break;
-                           
+                            case 0: Spielstand.AktuellerSpielstand.Multiplikator += 2.0; break;
+                            case 1: Spielstand.AktuellerSpielstand.Multiplikator += 5.0; break;
+                            case 2: Spielstand.AktuellerSpielstand.Multiplikator += 10.0; break;
+                            case 3: Spielstand.AktuellerSpielstand.Multiplikator += 15.0; break;
+                            case 4: Spielstand.AktuellerSpielstand.Multiplikator += 25.0; break;
+                            case 5: Spielstand.AktuellerSpielstand.Multiplikator += 50.0; break;
+                            case 6: Spielstand.AktuellerSpielstand.Multiplikator += 100.0; break;
                         }
+
+                        //Speichern 
+                        Spielstand.AktuellerSpielstand.Upgrades[index] = true;
+                        Spielstand.AktuellerSpielstand.Speichern(SpielstandManager.AktuellerPfad);
+
+
 
                         Invalidate();
                         break;
@@ -100,6 +118,7 @@ namespace CommunismClicker
             }
         }
 
+        //Nachrichten formuliert
         private string[] Nachrichten()
         {
             string[] nachrichten = new string[7];
@@ -117,5 +136,3 @@ namespace CommunismClicker
     }
 
 }
-
-

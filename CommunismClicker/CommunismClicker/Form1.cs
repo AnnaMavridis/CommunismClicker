@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Runtime.ConstrainedExecution;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -8,6 +9,7 @@ namespace CommunismClicker
 {
     public partial class Form1 : Form
     {
+        //Bilder von Form1
         private Image marxImage;
         private Image stern;
         private Image[] hintergruende = new Image[9];
@@ -41,6 +43,8 @@ namespace CommunismClicker
         private const float skalierungProSchritt = 0.02f;
 
         private Startfenster startFenster;
+
+        //Konstruktor von Form1. Aufgerufen durch Startfenster
         public Form1(Startfenster start, string pPfad)
         {
             InitializeComponent();
@@ -55,6 +59,7 @@ namespace CommunismClicker
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Gespeicherte Daten werden eingelesen
             spielstand.Laden(pfad);
 
             Waehrung = spielstand.Waehrung;
@@ -94,6 +99,7 @@ namespace CommunismClicker
             this.Resize += (s, ev) => this.Invalidate();
         }
 
+        //Paint Methode. Wird andauernd neu geladen. Enthält fast alle dynamischen Komponenten
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -103,6 +109,7 @@ namespace CommunismClicker
             Brush brushRed = new SolidBrush(Color.Red);
             Brush brushBlack = new SolidBrush(Color.Black);
 
+            //Der Marx Knopf wird gezeichnet
             float zielBreite = ClientSize.Width * 0.3f;
             float zielHoehe = ClientSize.Height * 0.3f;
 
@@ -136,7 +143,7 @@ namespace CommunismClicker
             marxBereich = new RectangleF(skaliertX, skaliertY, skaliertBreite, skaliertHoehe);
             g.DrawImage(marxImage, marxBereich);
 
-
+            //Der Upgrade und Zurück Knopf wird gezeichnet.
             int buttonBreite = (int)(ClientSize.Width * 0.15f);
             int buttonHoehe = (int)(ClientSize.Height * 0.08f);
             int abstandVomRand = 30;
@@ -165,6 +172,7 @@ namespace CommunismClicker
                 buttonX + (buttonBreite/2 - textSize.Width) / 2,
                 22 + (buttonHoehe/2 - textSize.Height) / 2);
 
+            //Der Level-Bar wird gezeichnet
             fortschrittProzent = Math.Min(1f, (float)Spielstand.AktuellerSpielstand.Waehrung / levelKosten[Level+1]);
 
             int balkenBreite = (int)(buttonBreite * fortschrittProzent);
@@ -177,6 +185,7 @@ namespace CommunismClicker
             g.FillRectangle(Brushes.Black, new Rectangle(balkenX, balkenY, buttonBreite - 2, balkenHoehe));
             g.FillRectangle(Brushes.Yellow, progressBar);
 
+            //Bei einem schon durchgespielten Spiel gibt es ein Belohnungsbildchen
             if (Durchgespielt)
             {
                 int sternMaß = ClientSize.Width / 32;
@@ -186,6 +195,7 @@ namespace CommunismClicker
             }
         }
         
+        //Die Methode managed alle Mouse Events
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
             if (marxBereich.Contains(e.Location))
@@ -276,9 +286,10 @@ namespace CommunismClicker
             levelKosten[9] = 200000;
         }
 
+        //Die Methode führt zurück zum Hauptmenu. Entweder mit vollständigem oder ohne vollständiges Speichern.
         private void ZurueckZumMenu()
         {
-            DialogResult result = MessageBox.Show("Möchtest du speichern?", "Zurück zum Menu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Möchtest du vollständig speichern?", "Zurück zum Menu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 spielstand.Waehrung = Convert.ToInt32(Spielstand.AktuellerSpielstand.Waehrung);
@@ -306,6 +317,7 @@ namespace CommunismClicker
             this.Refresh();
         }
 
+        //Die Methode animiert den Marx Knopf, sodass er beim mehrfachen Drücken größer wird.
         private void AnimationsTimer_Tick(object sender, EventArgs e)
         {
             if (animationsSchritte < maxSchritte)
