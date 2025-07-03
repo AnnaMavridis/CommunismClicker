@@ -8,7 +8,7 @@ namespace CommunismClicker
 {
     public static class SpielstandManager
     {
-        public static string AktuellerPfad { get; set; }
+        public static string AktuellerPfad { get; set; } //Public string der den Pfad zum aktuell geladenen Spielstand enthält
 
         public static string SpeicherOrdner = "spielstaende";
 
