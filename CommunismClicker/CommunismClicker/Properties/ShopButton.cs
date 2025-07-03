@@ -46,12 +46,6 @@ namespace CommunismClicker
             {
                 g.DrawRectangle(borderPen, Area);
             }
-
-
-
-
-
-
         }
 
         public bool Contains(Point p)

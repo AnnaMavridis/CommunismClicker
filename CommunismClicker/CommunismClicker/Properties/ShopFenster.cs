@@ -43,7 +43,6 @@ namespace CommunismClicker
             currentY += 80 + spacing;
             AddRectangle(startX, currentY, 300, 80, "S.E.K.", 2000);
 
-            
             for (int i = 0; i < rectangles.Count && i < Spielstand.AktuellerSpielstand.Upgrades.Length; i++)
             {
                 rectangles[i].Geklickt = Spielstand.AktuellerSpielstand.Upgrades[i];
@@ -54,7 +53,7 @@ namespace CommunismClicker
 
         private void ShopFenster_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         //Methode um Rechtecke(Buttons) zu erzeugen
@@ -83,7 +82,6 @@ namespace CommunismClicker
                     {
                         //abziehen von Währung
                         Spielstand.AktuellerSpielstand.Waehrung -= rect.Preis;
-       
                         //Nachrichten anzeigen
                         MessageBox.Show(nachrichten[index]);
                         //Variable auf true um zu speichern ob Upgrade gekauft wurde
@@ -98,15 +96,12 @@ namespace CommunismClicker
                             case 3: Spielstand.AktuellerSpielstand.Multiplikator += 15.0; break;
                             case 4: Spielstand.AktuellerSpielstand.Multiplikator += 25.0; break;
                             case 5: Spielstand.AktuellerSpielstand.Multiplikator += 50.0; break;
-                            case 6: Spielstand.AktuellerSpielstand.Multiplikator += 100.0; break;                          
+                            case 6: Spielstand.AktuellerSpielstand.Multiplikator += 100.0; break;
                         }
 
                         //Speichern 
                         Spielstand.AktuellerSpielstand.Upgrades[index] = true;
                         Spielstand.AktuellerSpielstand.Speichern(SpielstandManager.AktuellerPfad);
-                        
-
-
                         Invalidate();
                         break;
                     }
@@ -118,7 +113,6 @@ namespace CommunismClicker
             }
         }
 
-        //Nachrichten formoliert
         private string[] Nachrichten()
         {
             string[] nachrichten = new string[7];
@@ -136,5 +130,3 @@ namespace CommunismClicker
     }
 
 }
-
-

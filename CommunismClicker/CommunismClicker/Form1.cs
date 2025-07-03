@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Runtime.ConstrainedExecution;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -8,6 +9,7 @@ namespace CommunismClicker
 {
     public partial class Form1 : Form
     {
+        //Bilder von Form1
         private Image marxImage;
         private Image stern;
         private Image[] hintergruende = new Image[9];
@@ -17,7 +19,7 @@ namespace CommunismClicker
         private Rectangle bereichUpgradeButton;
         private Rectangle zurueckButton;
 
-        private int levelKosten;
+        private int[] levelKosten;
         private float fortschrittProzent = 0f;
         private string pfad;
         private string[] levelText;
@@ -41,6 +43,8 @@ namespace CommunismClicker
         private const float skalierungProSchritt = 0.02f;
 
         private Startfenster startFenster;
+
+        //Konstruktor von Form1. Aufgerufen durch Startfenster
         public Form1(Startfenster start, string pPfad)
         {
             InitializeComponent();
@@ -55,13 +59,8 @@ namespace CommunismClicker
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Gespeicherte Daten werden eingelesen
             spielstand.Laden(pfad);
-
-            //Waehrung = spielstand.Waehrung;
-            //Level = spielstand.Level;
-            //Upgrade = spielstand.Upgrades;
-            //Multiplikator = spielstand.Multiplikator;
-            //Durchgespielt = spielstand.Durchgespielt;
 
             Spielstand.AktuellerSpielstand.Laden(pfad);
 
@@ -102,6 +101,7 @@ namespace CommunismClicker
             this.Resize += (s, ev) => this.Invalidate();
         }
 
+        //Paint Methode. Wird andauernd neu geladen. Enthält fast alle dynamischen Komponenten
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -111,6 +111,7 @@ namespace CommunismClicker
             Brush brushRed = new SolidBrush(Color.Red);
             Brush brushBlack = new SolidBrush(Color.Black);
 
+            //Der Marx Knopf wird gezeichnet
             float zielBreite = ClientSize.Width * 0.3f;
             float zielHoehe = ClientSize.Height * 0.3f;
 
@@ -144,7 +145,7 @@ namespace CommunismClicker
             marxBereich = new RectangleF(skaliertX, skaliertY, skaliertBreite, skaliertHoehe);
             g.DrawImage(marxImage, marxBereich);
 
-
+            //Der Upgrade und Zurück Knopf wird gezeichnet.
             int buttonBreite = (int)(ClientSize.Width * 0.15f);
             int buttonHoehe = (int)(ClientSize.Height * 0.08f);
             int abstandVomRand = 30;
@@ -173,7 +174,8 @@ namespace CommunismClicker
                 buttonX + (buttonBreite/2 - textSize.Width) / 2,
                 22 + (buttonHoehe/2 - textSize.Height) / 2);
 
-            fortschrittProzent = Math.Min(1f, (float)Waehrung / levelKosten);
+            //Der Level-Bar wird gezeichnet
+            fortschrittProzent = Math.Min(1f, (float)Spielstand.AktuellerSpielstand.Waehrung / levelKosten[Level+1]);
 
             int balkenBreite = (int)(buttonBreite * fortschrittProzent);
             int balkenHoehe = 16;
@@ -185,6 +187,7 @@ namespace CommunismClicker
             g.FillRectangle(Brushes.Black, new Rectangle(balkenX, balkenY, buttonBreite - 2, balkenHoehe));
             g.FillRectangle(Brushes.Yellow, progressBar);
 
+            //Bei einem schon durchgespielten Spiel gibt es ein Belohnungsbildchen
             if (Durchgespielt)
             {
                 int sternMaß = ClientSize.Width / 32;
@@ -194,6 +197,7 @@ namespace CommunismClicker
             }
         }
         
+        //Die Methode managed alle Mouse Events
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
             if (marxBereich.Contains(e.Location))
@@ -202,6 +206,23 @@ namespace CommunismClicker
                 animationsTimer.Start();
                 Spielstand.AktuellerSpielstand.Waehrung += Convert.ToInt32(Multiplikator);
                 waehrungLabel.Text = $"Währung: {Spielstand.AktuellerSpielstand.Waehrung} ☭";
+                if (Spielstand.AktuellerSpielstand.Waehrung >= 200000)
+                {
+                    Spielstand.AktuellerSpielstand.Waehrung = 0;
+                    Level = 0;
+                    Durchgespielt = true;
+                    Multiplikator = 1;
+                    Upgrade = new bool[7];
+                }
+                else if (Spielstand.AktuellerSpielstand.Waehrung >= levelKosten[Level+1])
+                {
+                    Level++;
+                    levelLabel.Text = levelText[Level];
+                    if (Level == 9) 
+                    {
+                        MessageBox.Show("Ein erdlicher Schmetterling fliegt in einen kolibriartigen Alien des Planeten QWEZUP-3500. Das Universum implodiert und reißt alles in sich in Stücke. 200 Milliarden Jahre später, in einer anderen Dimension, hat ein Atze / eine Atzin eine gute Idee.");
+                    }
+                }
                 Invalidate();
             }
             else if (bereichUpgradeButton.Contains(e.Location))
@@ -217,6 +238,7 @@ namespace CommunismClicker
             }
         }
 
+        //Escape als Tastendruck ruft die Zurück-Methode auf
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -225,6 +247,7 @@ namespace CommunismClicker
             }
         }
 
+        //Array für alle Hintergrundbilder wird gesetzt. Bilder werden aus den VS Ressources genommen
         private void BilderSetzen()
         {
             marxImage = Properties.Resources.marxImage;
@@ -240,6 +263,7 @@ namespace CommunismClicker
             hintergruende[8] = Properties.Resources.Explosion;
         }
 
+        //Level Nachrrichten und Erreichpunkte werden gesetzt
         private void LevelTextSetzen()
         {
             levelText = new string[9];
@@ -252,12 +276,24 @@ namespace CommunismClicker
             levelText[6] = "Deine Galaxie hat eine gute Idee!";
             levelText[7] = "Dein Universum hat eine gute Idee!";
             levelText[8] = "Selbst in der Super Nova hast Du eine gute Idee!";
+
+            levelKosten = new int[10];
+            levelKosten[0] = 0;
+            levelKosten[1] = 50;
+            levelKosten[2] = 150;
+            levelKosten[3] = 500;
+            levelKosten[4] = 1500;
+            levelKosten[5] = 5000;
+            levelKosten[6] = 15000;
+            levelKosten[7] = 50000;
+            levelKosten[8] = 150000;
+            levelKosten[9] = 200000;
         }
 
-
+        //Die Methode führt zurück zum Hauptmenu. Entweder mit vollständigem oder ohne vollständiges Speichern.
         private void ZurueckZumMenu()
         {
-            DialogResult result = MessageBox.Show("Möchtest du speichern?", "Zurück zum Menu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Möchtest du vollständig speichern?", "Zurück zum Menu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 if (SpielstandManager.AktuellerPfad != null)
@@ -280,6 +316,7 @@ namespace CommunismClicker
             this.Refresh();
         }
 
+        //Die Methode animiert den Marx Knopf, sodass er beim mehrfachen Drücken größer wird.
         private void AnimationsTimer_Tick(object sender, EventArgs e)
         {
             if (animationsSchritte < maxSchritte)
