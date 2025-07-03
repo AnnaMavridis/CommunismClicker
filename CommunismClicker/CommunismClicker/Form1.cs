@@ -17,7 +17,7 @@ namespace CommunismClicker
         private Rectangle bereichUpgradeButton;
         private Rectangle zurueckButton;
 
-        private int levelKosten;
+        private int[] levelKosten;
         private float fortschrittProzent = 0f;
         private string pfad;
         private string[] levelText;
@@ -165,7 +165,7 @@ namespace CommunismClicker
                 buttonX + (buttonBreite/2 - textSize.Width) / 2,
                 22 + (buttonHoehe/2 - textSize.Height) / 2);
 
-            fortschrittProzent = Math.Min(1f, (float)Waehrung / levelKosten);
+            fortschrittProzent = Math.Min(1f, (float)Spielstand.AktuellerSpielstand.Waehrung / levelKosten[Level+1]);
 
             int balkenBreite = (int)(buttonBreite * fortschrittProzent);
             int balkenHoehe = 16;
@@ -194,6 +194,23 @@ namespace CommunismClicker
                 animationsTimer.Start();
                 Spielstand.AktuellerSpielstand.Waehrung += Convert.ToInt32(Multiplikator);
                 waehrungLabel.Text = $"Währung: {Spielstand.AktuellerSpielstand.Waehrung} ☭";
+                if (Spielstand.AktuellerSpielstand.Waehrung >= 200000)
+                {
+                    Spielstand.AktuellerSpielstand.Waehrung = 0;
+                    Level = 0;
+                    Durchgespielt = true;
+                    Multiplikator = 1;
+                    Upgrade = new bool[7];
+                }
+                else if (Spielstand.AktuellerSpielstand.Waehrung >= levelKosten[Level+1])
+                {
+                    Level++;
+                    levelLabel.Text = levelText[Level];
+                    if (Level == 9) 
+                    {
+                        MessageBox.Show("Ein erdlicher Schmetterling fliegt in einen kolibriartigen Alien des Planeten QWEZUP-3500. Das Universum implodiert und reißt alles in sich in Stücke. 200 Milliarden Jahre später, in einer anderen Dimension, hat ein Atze / eine Atzin eine gute Idee.");
+                    }
+                }
                 Invalidate();
             }
             else if (bereichUpgradeButton.Contains(e.Location))
@@ -207,6 +224,7 @@ namespace CommunismClicker
             }
         }
 
+        //Escape als Tastendruck ruft die Zurück-Methode auf
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -215,6 +233,7 @@ namespace CommunismClicker
             }
         }
 
+        //Array für alle Hintergrundbilder wird gesetzt. Bilder werden aus den VS Ressources genommen
         private void BilderSetzen()
         {
             marxImage = Properties.Resources.marxImage;
@@ -230,6 +249,7 @@ namespace CommunismClicker
             hintergruende[8] = Properties.Resources.Explosion;
         }
 
+        //Level Nachrrichten und Erreichpunkte werden gesetzt
         private void LevelTextSetzen()
         {
             levelText = new string[9];
@@ -242,6 +262,18 @@ namespace CommunismClicker
             levelText[6] = "Deine Galaxie hat eine gute Idee!";
             levelText[7] = "Dein Universum hat eine gute Idee!";
             levelText[8] = "Selbst in der Super Nova hast Du eine gute Idee!";
+
+            levelKosten = new int[10];
+            levelKosten[0] = 0;
+            levelKosten[1] = 50;
+            levelKosten[2] = 150;
+            levelKosten[3] = 500;
+            levelKosten[4] = 1500;
+            levelKosten[5] = 5000;
+            levelKosten[6] = 15000;
+            levelKosten[7] = 50000;
+            levelKosten[8] = 150000;
+            levelKosten[9] = 200000;
         }
 
         private void ZurueckZumMenu()
