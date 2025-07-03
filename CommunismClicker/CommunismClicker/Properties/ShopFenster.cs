@@ -43,6 +43,7 @@ namespace CommunismClicker
             currentY += 80 + spacing;
             AddRectangle(startX, currentY, 300, 80, "S.E.K.", 2000);
 
+            
             for (int i = 0; i < rectangles.Count && i < Spielstand.AktuellerSpielstand.Upgrades.Length; i++)
             {
                 rectangles[i].Geklickt = Spielstand.AktuellerSpielstand.Upgrades[i];
@@ -56,6 +57,7 @@ namespace CommunismClicker
             
         }
 
+        //Methode um Rechtecke(Buttons) zu erzeugen
         private void AddRectangle(int x, int y, int width, int height, string text, int preis)
         {
             rectangles.Add(new ShopButton(x, y, width, height, text, preis));
@@ -73,15 +75,21 @@ namespace CommunismClicker
         {
             foreach (var (rect, index) in rectangles.Select((rect, index) => (rect, index)))
             {
+                //falls auf Rechteck geklickt
                 if (!rect.Geklickt && rect.Contains(e.Location))
                 {
+                    //falls genug Währung
                     if (Spielstand.AktuellerSpielstand.Waehrung >= rect.Preis)
                     {
+                        //abziehen von Währung
                         Spielstand.AktuellerSpielstand.Waehrung -= rect.Preis;
        
+                        //Nachrichten anzeigen
                         MessageBox.Show(nachrichten[index]);
+                        //Variable auf true um zu speichern ob Upgrade gekauft wurde
                         rect.Geklickt = true;
 
+                        //Multiplikatoren erhöhen
                         switch (index)
                         {
                             case 0: Spielstand.AktuellerSpielstand.Multiplikator += 2.0; break;
@@ -93,6 +101,7 @@ namespace CommunismClicker
                             case 6: Spielstand.AktuellerSpielstand.Multiplikator += 100.0; break;                          
                         }
 
+                        //Speichern 
                         Spielstand.AktuellerSpielstand.Upgrades[index] = true;
                         Spielstand.AktuellerSpielstand.Speichern(SpielstandManager.AktuellerPfad);
                         
@@ -109,6 +118,7 @@ namespace CommunismClicker
             }
         }
 
+        //Nachrichten formoliert
         private string[] Nachrichten()
         {
             string[] nachrichten = new string[7];
