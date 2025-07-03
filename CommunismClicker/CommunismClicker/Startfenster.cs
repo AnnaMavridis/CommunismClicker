@@ -25,7 +25,7 @@ namespace CommunismClicker
             InitializeComponent();
             Directory.CreateDirectory(speicherOrdner);
             LadeSpielstandListe();
-            this.KeyPreview = true;
+            this.KeyPreview = true; //Erlaubt es tasteneingaben zu erkennen
             this.KeyDown += Form1_KeyDown;
             this.FormBorderStyle = FormBorderStyle.None;
         }

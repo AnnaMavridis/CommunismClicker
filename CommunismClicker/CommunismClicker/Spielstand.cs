@@ -16,7 +16,7 @@ namespace CommunismClicker
         public int Level = 0;
         public double Multiplikator = 1.0;
         public bool[] Upgrades = new bool[7];
-        
+
         public void Speichern(string pfad) //Public Methode zum Speichern des Spielstandes
         {
             try
@@ -35,7 +35,7 @@ namespace CommunismClicker
             }
         }
 
-        public void Laden(string pfad) //Public Methode zum Laden des Spielstandes
+        public void Laden(string pfad) //Public void um einen Spielstand zu laden
         {
             if (!File.Exists(pfad)) return;
 
