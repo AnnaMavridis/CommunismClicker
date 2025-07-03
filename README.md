@@ -14,5 +14,7 @@ Communism Clicker – Projektinfo
 
     Spielidee
 
+
         Die Idee ist es, den Kommunismus zu verbreiten im Cookie-Clicker-Style, indem man auf Karl Marx klickt. Je mehr Klicks, desto mehr Kommunismus!
         Es gibt ein Hauptfenster mit dem Marx button, Shopfunktionen für Upgrades, und Spielstände zum Speichern und Laden.
+
