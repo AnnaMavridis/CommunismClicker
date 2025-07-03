@@ -206,7 +206,7 @@ namespace CommunismClicker
                 animationsTimer.Start();
                 Spielstand.AktuellerSpielstand.Waehrung += Convert.ToInt32(Multiplikator);
                 waehrungLabel.Text = $"Währung: {Spielstand.AktuellerSpielstand.Waehrung} ☭";
-                if (Spielstand.AktuellerSpielstand.Waehrung >= 200000)
+                if (Spielstand.AktuellerSpielstand.Waehrung >= 170000)
                 {
                     Spielstand.AktuellerSpielstand.Waehrung = 0;
                     Level = 0;
@@ -218,7 +218,7 @@ namespace CommunismClicker
                 {
                     Level++;
                     levelLabel.Text = levelText[Level];
-                    if (Level == 9) 
+                    if (Level == 8) 
                     {
                         MessageBox.Show("Ein erdlicher Schmetterling fliegt in einen kolibriartigen Alien des Planeten QWEZUP-3500. Das Universum implodiert und reißt alles in sich in Stücke. 200 Milliarden Jahre später, in einer anderen Dimension, hat ein Atze / eine Atzin eine gute Idee.");
                     }
@@ -287,7 +287,7 @@ namespace CommunismClicker
             levelKosten[6] = 15000;
             levelKosten[7] = 50000;
             levelKosten[8] = 150000;
-            levelKosten[9] = 200000;
+            levelKosten[9] = 170000;
         }
 
         //Die Methode führt zurück zum Hauptmenu. Entweder mit vollständigem oder ohne vollständiges Speichern.
