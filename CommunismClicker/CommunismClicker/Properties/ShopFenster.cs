@@ -43,6 +43,11 @@ namespace CommunismClicker
             currentY += 80 + spacing;
             AddRectangle(startX, currentY, 300, 80, "S.E.K.", 2000);
 
+            for (int i = 0; i < rectangles.Count && i < Spielstand.AktuellerSpielstand.Upgrades.Length; i++)
+            {
+                rectangles[i].Geklickt = Spielstand.AktuellerSpielstand.Upgrades[i];
+            }
+
             nachrichten = Nachrichten();
         }
 
@@ -87,6 +92,11 @@ namespace CommunismClicker
                             case 5: Spielstand.AktuellerSpielstand.Multiplikator += 50.0; break;
                             case 6: Spielstand.AktuellerSpielstand.Multiplikator += 100.0; break;                          
                         }
+
+                        Spielstand.AktuellerSpielstand.Upgrades[index] = true;
+                        Spielstand.AktuellerSpielstand.Speichern(SpielstandManager.AktuellerPfad);
+                        
+
 
                         Invalidate();
                         break;

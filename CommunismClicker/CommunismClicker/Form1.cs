@@ -57,11 +57,19 @@ namespace CommunismClicker
         {
             spielstand.Laden(pfad);
 
-            Waehrung = spielstand.Waehrung;
-            Level = spielstand.Level;
-            Upgrade = spielstand.Upgrades;
-            Multiplikator = spielstand.Multiplikator;
-            Durchgespielt = spielstand.Durchgespielt;
+            //Waehrung = spielstand.Waehrung;
+            //Level = spielstand.Level;
+            //Upgrade = spielstand.Upgrades;
+            //Multiplikator = spielstand.Multiplikator;
+            //Durchgespielt = spielstand.Durchgespielt;
+
+            Spielstand.AktuellerSpielstand.Laden(pfad);
+
+            Waehrung = Spielstand.AktuellerSpielstand.Waehrung;
+            Level = Spielstand.AktuellerSpielstand.Level;
+            Upgrade = Spielstand.AktuellerSpielstand.Upgrades;
+            Multiplikator = Spielstand.AktuellerSpielstand.Multiplikator;
+            Durchgespielt = Spielstand.AktuellerSpielstand.Durchgespielt;
 
             this.DoubleBuffered = true;
 
@@ -200,6 +208,8 @@ namespace CommunismClicker
             {
                 ShopFenster shop = new ShopFenster();
                 shop.ShowDialog();
+
+                Multiplikator = Spielstand.AktuellerSpielstand.Multiplikator;
             }
             else if (zurueckButton.Contains(e.Location))
             {
@@ -244,20 +254,15 @@ namespace CommunismClicker
             levelText[8] = "Selbst in der Super Nova hast Du eine gute Idee!";
         }
 
+
         private void ZurueckZumMenu()
         {
             DialogResult result = MessageBox.Show("Möchtest du speichern?", "Zurück zum Menu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                spielstand.Waehrung = Convert.ToInt32(Spielstand.AktuellerSpielstand.Waehrung);
-                spielstand.Level = Level;
-                spielstand.Multiplikator = Multiplikator;
-                spielstand.Durchgespielt = Durchgespielt;
-                spielstand.Upgrades = Upgrade;
-
                 if (SpielstandManager.AktuellerPfad != null)
                 {
-                    spielstand.Speichern(SpielstandManager.AktuellerPfad);
+                    Spielstand.AktuellerSpielstand.Speichern(SpielstandManager.AktuellerPfad);
                     MessageBox.Show("Spielstand gespeichert!");
                 }
                 else
@@ -268,6 +273,7 @@ namespace CommunismClicker
             startFenster.Show();
             this.Close();
         }
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {
