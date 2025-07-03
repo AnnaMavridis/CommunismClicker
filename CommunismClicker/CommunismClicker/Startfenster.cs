@@ -25,7 +25,7 @@ namespace CommunismClicker
             InitializeComponent();
             Directory.CreateDirectory(speicherOrdner);
             LadeSpielstandListe();
-            this.KeyPreview = true;
+            this.KeyPreview = true; //Erlaubt es tasteneingaben zu erkennen
             this.KeyDown += Form1_KeyDown;
             this.FormBorderStyle = FormBorderStyle.None;
         }
@@ -80,7 +80,6 @@ namespace CommunismClicker
             string name = Microsoft.VisualBasic.Interaction.InputBox("Name des neuen Spielstands:", "Neuer Spielstand", "Spielstand_" + DateTime.Now.Ticks);
             if (string.IsNullOrWhiteSpace(name)) return;
 
-            // Neue Werte setzen
             aktuellerSpielstand.Index = 0;
             aktuellerSpielstand.Titel = name;
             aktuellerSpielstand.Waehrung = 0;
@@ -120,7 +119,7 @@ namespace CommunismClicker
             Form1 spielForm = new Form1(this, datei);
             spielForm.Show();
 
-            // Startfenster ausblenden oder schließen
+            // Startfenster ausblenden
             this.Hide();
         }
 
