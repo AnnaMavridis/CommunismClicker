@@ -8,16 +8,19 @@ namespace CommunismClicker
 {
     public partial class Form1 : Form
     {
-        Image marxImage;
-        Image stern;
-        Image[] hintergruende = new Image[9]; 
+        private Image marxImage;
+        private Image stern;
+        private Image[] hintergruende = new Image[9];
 
+        // Rechtecke für Klickbereiche
         private RectangleF marxBereich;
         private Rectangle bereichUpgradeButton;
         private Rectangle zurueckButton;
-        private int upgradeKosten = 20;
+
+        private int levelKosten;
         private float fortschrittProzent = 0f;
         private string pfad;
+        private string[] levelText;
 
         Spielstand spielstand = new Spielstand();
 
@@ -27,9 +30,9 @@ namespace CommunismClicker
         public double Multiplikator;
         public bool Durchgespielt;
 
+        // UI-Labels
         private Label waehrungLabel;
         private Label levelLabel;
-        private string[] levelText;
 
         private float bildSkalierung = 1.0f;
         private System.Windows.Forms.Timer animationsTimer;
@@ -162,7 +165,7 @@ namespace CommunismClicker
                 buttonX + (buttonBreite/2 - textSize.Width) / 2,
                 22 + (buttonHoehe/2 - textSize.Height) / 2);
 
-            fortschrittProzent = Math.Min(1f, (float)Waehrung / upgradeKosten);
+            fortschrittProzent = Math.Min(1f, (float)Waehrung / levelKosten);
 
             int balkenBreite = (int)(buttonBreite * fortschrittProzent);
             int balkenHoehe = 16;
