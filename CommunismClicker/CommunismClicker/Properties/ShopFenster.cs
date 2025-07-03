@@ -29,19 +29,19 @@ namespace CommunismClicker
             int startX = 100;
             int currentY = 50;
             int spacing = 20;
-            AddRectangle(startX, currentY, 300, 80, "Das Manifest", 1);
+            AddRectangle(startX, currentY, 300, 80, "Das Manifest", 25);
             currentY += 80 + spacing;
-            AddRectangle(startX, currentY, 300, 80, "Organisier Dich!", 2);
+            AddRectangle(startX, currentY, 300, 80, "Organisier Dich!", 100);
             currentY += 80 + spacing;
-            AddRectangle(startX, currentY, 300, 80, "Das Kapital", 3);
+            AddRectangle(startX, currentY, 300, 80, "Das Kapital", 250);
             currentY += 80 + spacing;
-            AddRectangle(startX, currentY, 300, 80, "Argumentverstärker", 4);
+            AddRectangle(startX, currentY, 300, 80, "Argumentverstärker", 500);
             currentY += 80 + spacing;
-            AddRectangle(startX, currentY, 300, 80, "Kommunismus ist wenn..", 5);
+            AddRectangle(startX, currentY, 300, 80, "Kommunismus ist wenn..", 1000);
             currentY += 80 + spacing;
-            AddRectangle(startX, currentY, 300, 80, "Kein Salut mehr", 6);
+            AddRectangle(startX, currentY, 300, 80, "Kein Salut mehr", 1250);
             currentY += 80 + spacing;
-            AddRectangle(startX, currentY, 300, 80, "S.E.K.", 7);
+            AddRectangle(startX, currentY, 300, 80, "S.E.K.", 2000);
 
             nachrichten = Nachrichten();
         }
@@ -78,14 +78,13 @@ namespace CommunismClicker
 
                         switch (index)
                         {
-                            case 0: Spielstand.AktuellerSpielstand.Multiplikator += 0.25; break;
-                            case 1: Spielstand.AktuellerSpielstand.Multiplikator += 0.5; break;
-                            case 2: Spielstand.AktuellerSpielstand.Multiplikator += 1.0; break;
-                            case 3: Spielstand.AktuellerSpielstand.Multiplikator += 2.5; break;
-                            case 4: Spielstand.AktuellerSpielstand.Multiplikator += 5.0; break;
-                            case 5: Spielstand.AktuellerSpielstand.Multiplikator += 7.25; break;
-                            case 6: Spielstand.AktuellerSpielstand.Multiplikator += 9.0; break;
-                           
+                            case 0: Spielstand.AktuellerSpielstand.Multiplikator += 2.0; break;
+                            case 1: Spielstand.AktuellerSpielstand.Multiplikator += 5.0; break;
+                            case 2: Spielstand.AktuellerSpielstand.Multiplikator += 10.0; break;
+                            case 3: Spielstand.AktuellerSpielstand.Multiplikator += 15.0; break;
+                            case 4: Spielstand.AktuellerSpielstand.Multiplikator += 25.0; break;
+                            case 5: Spielstand.AktuellerSpielstand.Multiplikator += 50.0; break;
+                            case 6: Spielstand.AktuellerSpielstand.Multiplikator += 100.0; break;                          
                         }
 
                         Invalidate();
